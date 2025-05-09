@@ -13,9 +13,11 @@ export default function SnippetEditForm({snippet}:SnippetEditFormProps)
   const [code,setCode]  =useState(snippet.code)
 
 
-const handleEditorChange = (value: string | undefined) => {
-    console.log(value);
+const handleEditorChange = (value: string ='') => {
+   setCode(value)
   };
+
+const editSnippetAction=actions.editSnippet.bind(null,snippet.id,code);
 
     return(
 <div>
@@ -26,5 +28,9 @@ defaultValue={snippet.code}
 options={{minimap:{enabled:false}}}
 onChange={handleEditorChange}
 />
+<form action={editSnippetAction}>
+  <button type="submit">Save</button>
+</form>
+
 </div>)
 }
